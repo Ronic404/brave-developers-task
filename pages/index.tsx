@@ -73,9 +73,6 @@ export default function Index() {
     cookie.set('operators', JSON.stringify(allOperators));
   }, [allOperators]);
 
-  console.log(typeof allOperators);
-  console.log(allOperators);
-
   return (
     <MainLayout>
       <Title text="Choose the mobile oparator:" />

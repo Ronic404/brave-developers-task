@@ -9,6 +9,10 @@ const Header = styled.header`
   padding: 1em 0;
   color: palevioletred;
   background: rgba(173, 188, 230, 0.8);
+
+  @media(max-width: 768px) {
+    padding: 0;
+  }
 `;
 
 const ForSEO = styled.h1`

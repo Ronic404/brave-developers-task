@@ -14,14 +14,26 @@ const ModalDiv = styled.div`
   transform: translate(-50%, -50%);
   width: 30vw;
   height: 30vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  @media(max-width: 768px) {
+    width: 50vw;
+  }
+
+  @media(max-width: 425px) {
+    width: 80vw;
+  }
 `;
 
 export default function ({ open, onClose }: IModal) {
   const modalBody = (
     <ModalDiv>
-      <h2 id="simple-modal-title">Text in a modal</h2>
+      <h2 id="simple-modal-title">Congratulations!</h2>
       <p id="simple-modal-description">
-        Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+        You have topped up your account.
       </p>
     </ModalDiv>
   );

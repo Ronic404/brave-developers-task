@@ -26,6 +26,14 @@ const Content = styled.div`
   height: 50vh;
   padding: 1em;
   border-radius: 20px;
+
+  @media(max-width: 768px) {
+    width: 50vw;
+  }
+
+  @media(max-width: 425px) {
+    width: 80vw;
+  }
 `;
 
 interface IMainLayout {
@@ -34,7 +42,7 @@ interface IMainLayout {
 }
 
 export default function MainLayout({ children, title = 'Brave developers' }: IMainLayout) {
-  if (!cookie.getJSON('operators') || cookie.getJSON('operators') === '[]') {
+  if (!cookie.getJSON('operators') || cookie.get('operators') === '[]') {
     cookie.set('operators', JSON.stringify(defaultOperators), { expires: 7 });
   }
 

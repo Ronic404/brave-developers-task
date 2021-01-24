@@ -9,6 +9,10 @@ const Footer = styled.footer`
   padding: 1em 0;
   color: palevioletred;
   background: rgba(173, 216, 230, 0.8);
+
+  @media(max-width: 768px) {
+    padding: 0;
+  }
 `;
 
 const changeColor = keyframes`

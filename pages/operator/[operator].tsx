@@ -5,12 +5,10 @@ import {
 } from '@material-ui/core';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-// import { NextPageContext } from 'next';
 import styled from 'styled-components';
 import {
   useState, ChangeEvent, useEffect,
 } from 'react';
-import cookie from 'js-cookie';
 
 import MainLayout from '../../components/MainLayout';
 import Modal from '../../components/ModalCongrats';
@@ -18,8 +16,6 @@ import Title from '../../components/Title';
 
 import phoneNumberMask from '../../helpers/phoneNumberMask';
 import isComplete from '../../helpers/isComplete';
-
-import ErrorPage from '../404';
 
 const Payment = styled.div`
   display: flex;
@@ -40,38 +36,8 @@ interface State {
   sum: string;
 }
 
-interface IOperator {
-  id: number
-  name: string
-}
-
-export default function MobileOperator({ data }: any) {
-  console.log(data);
-
+export default function MobileOperator() {
   const router = useRouter();
-  const [isExistPage, setIsExistPage] = useState(false);
-  // let isExistPage = false;
-
-  // useEffect((): any => {
-  //   console.log(router.query.operator);
-
-  //   cookie.getJSON('operators').forEach((item: IOperator) => {
-  //     if (item.name === router.query.operator) {
-  //       setIsExistPage(true);
-  //     }
-  //   });
-  // }, [router]);
-
-  // if (!isExistPage) {
-  //   console.log('page not found');
-  //   return <ErrorPage />;
-  // }
-  // console.log(cookie.getJSON('operators'));
-  // cookie.getJSON('operators').forEach((item: IOperator) => {
-  //   if (item.name === router.query.operator) {
-  //     console.log(true);
-  //   }
-  // });
 
   const [isCorrectValues, setIsCorrectValues] = useState({
     isPhone: false,
@@ -151,7 +117,7 @@ export default function MobileOperator({ data }: any) {
     <MainLayout title={router.query.operator}>
       <Payment>
         <Title text={router.query.operator} />
-        {isLoader && <CircularProgress />}
+        {isLoader && <CircularProgress style={{ margin: 'auto' }} />}
         <Form>
           <TextField
             autoComplete="off"
@@ -186,47 +152,10 @@ export default function MobileOperator({ data }: any) {
   );
 }
 
-// interface OperatorNextPageContext extends NextPageContext {
-//   query: {
-//     operator: string
-//   }
+// export async function getServerSideProps(ctx) {
+//   return {
+//     props: {
+//       data: ctx.req.headers.cookie,
+//     },
+//   };
 // }
-
-// MobileOperator.getStaticProps = (ctx) => {
-//   const data = cookie.getJSON('operators');
-//   console.log(ctx);
-//   console.log(data);
-//   return { props: data };
-// };
-
-export async function getServerSideProps(ctx) {
-  // cookie.getJSON('operators').forEach((item: IOperator) => {
-  //   if (item.name === ctx.query.operator) {
-  //     return {
-  //       props: {
-  //         data: ctx.query.operator,
-  //       },
-  //     };
-  //   }
-  // });
-
-  // ctx.req.headers.cookie.split('%22').forEach((item) => {
-  //   if (item.toLowerCase() === ctx.query.operator.toLowerCase()) {
-  //     return {
-  //       props: {
-  //         data: item,
-  //       },
-  //     };
-  //   }
-  // });
-
-  // return {
-  //   notFound: true,
-  // };
-
-  return {
-    props: {
-      data: ctx.req.headers.cookie,
-    },
-  };
-}
